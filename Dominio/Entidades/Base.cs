@@ -5,14 +5,11 @@ namespace Dominio.Entidades
     public abstract class Base
     {
         public Guid Id { get; set; }
+        public DateTime DataCriacao { get; set; }
         public Base()
         {
             Id = Guid.NewGuid();
+            DataCriacao = DateTime.Now;
         }
-    }
-
-    public abstract class BaseProjeto : Base
-    {
-        public Guid IdProjeto { get; set; }
     }
 }
