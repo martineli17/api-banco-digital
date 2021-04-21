@@ -10,7 +10,7 @@ namespace Dominio.Entidades
         public EnumEventoMovimentacao Evento { get; set; }
         public EnumTipoMovimentacao Tipo { get; set; }
         public decimal Valor { get; set; }
-        //public Conta Conta { get; set; } inserir posteriormente quando a classe Conta for criada
+        public Conta Conta { get; set; }
 
         public Movimentacao DefinirTipo()
         {
