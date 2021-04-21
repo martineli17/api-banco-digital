@@ -1,5 +1,5 @@
 ﻿using Crosscuting.Notificacao;
-using Dominio.Entidades;
+using Dominio.Entidades.Bases;
 using Dominio.Interfaces.Repositorio;
 using Microsoft.EntityFrameworkCore;
 using Repositorio.Contexto;

@@ -13,7 +13,7 @@
 #### Não será necessário inserir uma conexão com o banco de dados, pois a aplicação usa um banco de dados em memória. Mas se caso quiser inserir uma ConnectionString de algum banco de dados, será necessário fazer as devidas alterações para realizar tal procedimento.
 
 ## Objetivo
-#### O intuito dessa aplicação é implementar um sistema especialista, dentro do contexto de IA. Nele, é possível criar 1 ou N sistemas especialistas e suas respectivas características e, no final, iniciar o sistema para que o mesmo tente conseguir, com base nas respostas e regras inseridas, chegar à uma análise correta do problema apresentado.
+#### O intuito dessa aplicação é simular operações básicas de um Banco Digital, com o objetivo de aplicar padrões de desenvolvimento web back-end.
 
 ##### Tecnologias: 
-##### Blazor WebAssembly e .NET Core.
+##### Web API REST .NET

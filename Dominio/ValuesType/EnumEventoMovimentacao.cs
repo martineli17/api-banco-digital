@@ -9,6 +9,6 @@ namespace Dominio.ValuesType
         [Display(ShortName = "D")]
         Transferencia = 2,
         [Display(ShortName = "C")]
-        Deposito = 4,
+        Deposito = 3,
     }
 }

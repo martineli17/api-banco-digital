@@ -1,4 +1,4 @@
-﻿using Dominio.Entidades;
+﻿using Dominio.Entidades.Bases;
 using Dominio.Interfaces.Repositorio;
 using Dominio.Interfaces.Service;
 using FluentValidation;
