@@ -10,7 +10,7 @@ namespace Dominio.Entidades
         public EnumEventoMovimentacao Evento { get; set; }
         public EnumTipoMovimentacao Tipo { get; private set; }
         public decimal Valor { get; set; }
-        //public Conta Conta { get; set; } inserir posteriormente quando a classe Conta for criada
+        public Conta Conta { get; set; }
         public Movimentacao(Guid idConta, EnumEventoMovimentacao evento, decimal valor)
         {
             IdConta = idConta;
@@ -22,6 +22,5 @@ namespace Dominio.Entidades
             this.Tipo = this.Evento.ShortName() == "C" ? EnumTipoMovimentacao.Credito : EnumTipoMovimentacao.Debito;
             return this;
         }
-
     }
 }

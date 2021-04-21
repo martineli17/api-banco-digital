@@ -1,16 +1,12 @@
-﻿using Crosscuting.Extensions;
-using Dominio.ValuesType;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Dominio.ValuesType;
 
 namespace Dominio.Entidades
 {
     public class Conta : Base
     {
-        public int numeroConta { get; set; }
-        public EnumTipoConta tipo { get; set; }
-        public double saldo { get; set; }
+        public string Numero { get; set; }
+        public EnumTipoConta Tipo { get; set; }
+        public decimal Saldo { get; set; }
 
     }
 
