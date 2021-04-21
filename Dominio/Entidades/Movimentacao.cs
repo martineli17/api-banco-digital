@@ -1,4 +1,5 @@
 ﻿using Crosscuting.Extensions;
+using Dominio.Entidades.Bases;
 using Dominio.ValuesType;
 using System;
 

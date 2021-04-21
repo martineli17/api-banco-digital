@@ -1,7 +1,7 @@
 ﻿using Dominio.ValuesType;
 using System;
 
-namespace Dominio.Entidades
+namespace Dominio.Entidades.Bases
 {
     public abstract class OperacaoBase : Base
     {
@@ -10,6 +10,6 @@ namespace Dominio.Entidades
         public decimal Valor { get; set; }
         public Movimentacao Movimentacao { get; private set; }
         public void MovimentarConta(EnumEventoMovimentacao evento) =>
-            this.Movimentacao = new Movimentacao(this.IdConta, evento, this.Valor);
+            Movimentacao = new Movimentacao(IdConta, evento, Valor);
     }
 }

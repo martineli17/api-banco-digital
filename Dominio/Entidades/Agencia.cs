@@ -1,4 +1,6 @@
-﻿namespace Dominio.Entidades
+﻿using Dominio.Entidades.Bases;
+
+namespace Dominio.Entidades
 {
     public class Agencia : Base 
     {

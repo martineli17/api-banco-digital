@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dominio.Entidades
+namespace Dominio.Entidades.Bases
 {
     public abstract class Base
     {

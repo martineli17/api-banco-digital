@@ -1,4 +1,5 @@
-﻿using Dominio.ValuesType;
+﻿using Dominio.Entidades.Bases;
+using Dominio.ValuesType;
 using System;
 
 namespace Dominio.Entidades
