@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dominio.Entidades.Bases
+namespace Dominio.Entidades
 {
     public abstract class Base
     {
