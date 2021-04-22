@@ -1,19 +1,17 @@
 ﻿using Dominio.Entidades.Bases;
 using Dominio.ValuesType;
 using System;
-using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
-    public class Conta : Base
+    public class Cartao : Base
     {
         public Guid IdCliente { get; set; }
         public string Numero { get; set; }
-        public EnumTipoConta Tipo { get; set; }
-        public decimal Saldo { get; set; }
+        public DateTime Vencimento { get; set; }
+        public EnumTipoCartao Tipo { get; set; }
         public Cliente Cliente { get; set; }
-        public ICollection<Movimentacao> Movimentacoes { get; set; }
 
+        public bool IsVencido() => this.Vencimento < DateTime.Now;
     }
-
 }

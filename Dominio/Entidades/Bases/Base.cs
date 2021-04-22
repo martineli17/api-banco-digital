@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dominio.Entidades
+namespace Dominio.Entidades.Bases
 {
     public abstract class Base
     {
@@ -19,7 +19,7 @@ namespace Dominio.Entidades
         {
             var erros = new List<string>();
             var validacao = validator.Validate(dados);
-            if(!validacao.IsValid)
+            if (!validacao.IsValid)
                 erros.AddRange(validacao.Errors.Select(x => x.ErrorMessage).ToList());
             return (validacao.IsValid, erros);
         }
