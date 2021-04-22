@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Dominio.Entidades.Bases
 {
@@ -10,6 +13,15 @@ namespace Dominio.Entidades.Bases
         {
             Id = Guid.NewGuid();
             DataCriacao = DateTime.Now;
+        }
+
+        protected (bool IsValido, IReadOnlyList<string> Erros) Validar<TObject>(AbstractValidator<TObject> validator, TObject dados) where TObject : Base
+        {
+            var erros = new List<string>();
+            var validacao = validator.Validate(dados);
+            if(!validacao.IsValid)
+                erros.AddRange(validacao.Errors.Select(x => x.ErrorMessage).ToList());
+            return (validacao.IsValid, erros);
         }
     }
 }
