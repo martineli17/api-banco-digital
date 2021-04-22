@@ -6,8 +6,8 @@ namespace Dominio.Validators.EntidadesValidator
 {
     public class CartaoValidator : AbstractValidator<Cartao>
     {
-        public CartaoValidator()
-        {
+        public CartaoValidator()         
+        {                                                                                                    
             RuleFor(x => x.IdCliente).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Cliente"));
         }
     }
