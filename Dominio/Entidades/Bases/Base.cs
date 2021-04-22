@@ -15,6 +15,8 @@ namespace Dominio.Entidades.Bases
             DataCriacao = DateTime.Now;
         }
 
+        protected abstract (bool IsValido, IReadOnlyList<string> Erros) Validar();
+
         protected (bool IsValido, IReadOnlyList<string> Erros) Validar<TObject>(AbstractValidator<TObject> validator, TObject dados) where TObject : Base
         {
             var erros = new List<string>();

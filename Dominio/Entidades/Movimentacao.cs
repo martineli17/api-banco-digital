@@ -2,6 +2,7 @@
 using Dominio.Entidades.Bases;
 using Dominio.ValuesType;
 using System;
+using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
@@ -22,6 +23,11 @@ namespace Dominio.Entidades
         {
             this.Tipo = this.Evento.ShortName() == "C" ? EnumTipoMovimentacao.Credito : EnumTipoMovimentacao.Debito;
             return this;
+        }
+
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

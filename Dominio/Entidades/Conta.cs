@@ -14,6 +14,10 @@ namespace Dominio.Entidades
         public Cliente Cliente { get; set; }
         public ICollection<Movimentacao> Movimentacoes { get; set; }
 
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Dominio.Entidades.Bases;
 using Dominio.ValuesType;
 using System;
+using System.Collections.Generic;
 
 namespace Dominio.Entidades
 {
@@ -20,6 +21,11 @@ namespace Dominio.Entidades
             this.ContaOrigem.Saldo -= this.Valor;
             this.Movimentacao.Conta.Saldo += this.Valor;
             return this;
+        }
+
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }
