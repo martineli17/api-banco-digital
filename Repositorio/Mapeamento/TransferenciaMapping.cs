@@ -13,8 +13,8 @@ namespace Repositorio.Mapeamento
             builder.Property(x => x.IdConta).HasColumnName("IdConta")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
-            builder.Property(x => x.IdContaOrigem)
-                   .HasColumnName("IdContaOrigem")
+            builder.Property(x => x.IdContaDestino)
+                   .HasColumnName("IdContaDestino")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
             builder.Property(x => x.DataAgendamento)
@@ -28,9 +28,9 @@ namespace Repositorio.Mapeamento
                    .WithMany(x => x.Transferencias)
                    .HasForeignKey(x => x.IdMovimentacao)
                    .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.ContaOrigem)
-                   .WithMany(x => x.TransferenciasOrigem)
-                   .HasForeignKey(x => x.IdContaOrigem)
+            builder.HasOne(x => x.ContaDestino)
+                   .WithMany(x => x.TransferenciasRecebidas)
+                   .HasForeignKey(x => x.IdContaDestino)
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }
