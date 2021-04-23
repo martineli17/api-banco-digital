@@ -25,9 +25,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
-        {
-            throw new NotImplementedException();
-        }
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => (true, null);
     }
 }

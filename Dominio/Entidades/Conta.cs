@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades.Bases;
+using Dominio.Validators.EntidadesValidator;
 using Dominio.ValuesType;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,7 @@ namespace Dominio.Entidades
         public Cliente Cliente { get; set; }
         public ICollection<Movimentacao> Movimentacoes { get; set; }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
-        {
-            throw new NotImplementedException();
-        }
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
     }
 
 }
