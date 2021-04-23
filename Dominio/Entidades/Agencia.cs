@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades.Bases;
+using Dominio.Validators.EntidadesValidator;
 using System.Collections.Generic;
 
 namespace Dominio.Entidades
@@ -7,9 +8,6 @@ namespace Dominio.Entidades
     {
         public string Numero { get; set; }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new AgenciaValidator(), this);
     }
 }

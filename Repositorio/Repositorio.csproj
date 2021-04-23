@@ -23,8 +23,4 @@
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapeamento\" />
-  </ItemGroup>
-
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Dominio.Entidades.Bases;
+using Dominio.Validators.EntidadesValidator;
 using Dominio.ValuesType;
 using System.Collections.Generic;
 
@@ -21,9 +22,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new DepositoValidator(), this);
     }
 }

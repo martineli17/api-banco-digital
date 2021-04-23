@@ -8,11 +8,23 @@ namespace Dominio.Entidades
 {
     public class Movimentacao : Base
     {
+        private EnumEventoMovimentacao _evento;
         public Guid IdConta { get; set; }
-        public EnumEventoMovimentacao Evento { get; set; }
+        public EnumEventoMovimentacao Evento 
+        { 
+            get => _evento; 
+            set 
+            {
+                 _evento = value;
+                 DefinirTipo();
+            } 
+        }
         public EnumTipoMovimentacao Tipo { get; private set; }
         public decimal Valor { get; set; }
         public Conta Conta { get; set; }
+        public ICollection<Transferencia> Transferencias { get; set; }
+        public ICollection<Deposito> Depositos { get; set; }
+        public ICollection<Saque> Saques { get; set; }
         public Movimentacao(Guid idConta, EnumEventoMovimentacao evento, decimal valor)
         {
             IdConta = idConta;
@@ -25,9 +37,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar()
-        {
-            throw new NotImplementedException();
-        }
+        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => (true, null);
     }
 }
