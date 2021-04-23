@@ -28,6 +28,10 @@ namespace Repositorio.Mapeamento
                    .WithMany(x => x.Transferencias)
                    .HasForeignKey(x => x.IdMovimentacao)
                    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.ContaOrigem)
+                   .WithMany(x => x.TransferenciasOrigem)
+                   .HasForeignKey(x => x.IdContaOrigem)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
