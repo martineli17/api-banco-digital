@@ -8,8 +8,17 @@ namespace Dominio.Entidades
 {
     public class Movimentacao : Base
     {
+        private EnumEventoMovimentacao _evento;
         public Guid IdConta { get; set; }
-        public EnumEventoMovimentacao Evento { get; set; }
+        public EnumEventoMovimentacao Evento 
+        { 
+            get => _evento; 
+            set 
+            {
+                 _evento = value;
+                 DefinirTipo();
+            } 
+        }
         public EnumTipoMovimentacao Tipo { get; private set; }
         public decimal Valor { get; set; }
         public Conta Conta { get; set; }
