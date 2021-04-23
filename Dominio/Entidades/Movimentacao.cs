@@ -22,6 +22,9 @@ namespace Dominio.Entidades
         public EnumTipoMovimentacao Tipo { get; private set; }
         public decimal Valor { get; set; }
         public Conta Conta { get; set; }
+        public ICollection<Transferencia> Transferencias { get; set; }
+        public ICollection<Deposito> Depositos { get; set; }
+        public ICollection<Saque> Saques { get; set; }
         public Movimentacao(Guid idConta, EnumEventoMovimentacao evento, decimal valor)
         {
             IdConta = idConta;

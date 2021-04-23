@@ -14,7 +14,6 @@ namespace Dominio.Entidades
         public decimal Saldo { get; set; }
         public Cliente Cliente { get; set; }
         public ICollection<Movimentacao> Movimentacoes { get; set; }
-
         protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
     }
 
