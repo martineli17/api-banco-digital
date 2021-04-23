@@ -1,7 +1,6 @@
 ﻿using Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Repositorio.Mapeamento
 {
@@ -9,7 +8,7 @@ namespace Repositorio.Mapeamento
     {
         public void Configure(EntityTypeBuilder<Agencia> builder)
         {
-            builder.ToTable("Deposito");
+            builder.ToTable("Agencia");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                    .HasColumnName("IdAgencia")
