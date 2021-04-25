@@ -1,4 +1,5 @@
-﻿using Dominio.Entidades.Bases;
+﻿using Crosscuting.Extensions;
+using Dominio.Entidades.Bases;
 using Dominio.Validators.EntidadesValidator;
 using Dominio.ValuesType;
 using System;
@@ -9,13 +10,21 @@ namespace Dominio.Entidades
     public class Conta : Base
     {
         public Guid IdCliente { get; set; }
-        public string Numero { get; set; }
+        public string Numero { get; private set; }
         public EnumTipoConta Tipo { get; set; }
         public decimal Saldo { get; set; }
         public Cliente Cliente { get; set; }
         public ICollection<Movimentacao> Movimentacoes { get; set; }
         public ICollection<Transferencia> TransferenciasRecebidas { get; set; }
         protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
+        public Conta()
+        {
+            Numero = GerarNumero();
+        }
+        public string GerarNumero() =>
+                        $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
+                        $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
+                        $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}-{Numero.RandonsNumbers()}";
     }
 
 }
