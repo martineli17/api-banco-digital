@@ -28,7 +28,7 @@ namespace Repositorio.Mapeamento
             builder.Property(x => x.Tipo)
                     .HasColumnName("Tipo")
                     .HasColumnType("varchar(15)")
-                    .HasConversion(new EnumToStringConverter<EnumTipoCartao>());
+                    .HasConversion(new EnumToStringConverter<EnumTipoCartao>())
                     .IsRequired();
             builder.HasOne(x => x.Cliente)
                     .WithOne(x => x.Cartao)
