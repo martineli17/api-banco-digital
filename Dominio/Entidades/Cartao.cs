@@ -20,7 +20,7 @@ namespace Dominio.Entidades
             Vencimento = DateTime.Now.AddYears(4);
         }
         public bool IsVencido() => this.Vencimento < DateTime.Now;
-        private string GerarNumero() =>  
+        public string GerarNumero() =>  
                         $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}";

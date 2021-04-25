@@ -1,6 +1,9 @@
 ﻿using Dominio.Entidades;
+using Dominio.ValuesType;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
 
 namespace Repositorio.Mapeamento
 {
@@ -11,7 +14,7 @@ namespace Repositorio.Mapeamento
             builder.ToTable("Cartao");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                   .HasColumnName("IdCartao")
+                   .HasColumnName("Id")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
             builder.Property(x => x.Numero)
@@ -24,8 +27,8 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Tipo)
                     .HasColumnName("Tipo")
-                    .HasColumnType("nvarchar(10)")
-                    .IsRequired();
+                    .HasColumnType("varchar(15)")
+                    .HasConversion(new EnumToStringConverter<EnumTipoCartao>());
            //To do 
         }
     }

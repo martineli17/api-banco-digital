@@ -2,6 +2,7 @@
 using Dominio.ValuesType;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 
 namespace Repositorio.Mapeamento
@@ -19,14 +20,12 @@ namespace Repositorio.Mapeamento
             builder.Property(x => x.Evento)
                    .HasColumnName("Evento")
                    .HasColumnType("nvarchar(10)")
-                   .HasConversion(v => v.ToString(),
-                                  v => (EnumEventoMovimentacao)Enum.Parse(typeof(EnumEventoMovimentacao), v))
+                   .HasConversion(new EnumToStringConverter<EnumEventoMovimentacao>())
                    .IsRequired();
             builder.Property(x => x.Tipo)
                    .HasColumnName("Tipo")
                    .HasColumnType("nvarchar(10)")
-                   .HasConversion(v => v.ToString(),
-                                  v => (EnumTipoMovimentacao)Enum.Parse(typeof(EnumTipoMovimentacao), v))
+                   .HasConversion(new EnumToStringConverter<EnumTipoMovimentacao>())
                    .IsRequired();
             builder.Property(x => x.Valor)
                    .HasColumnName("Valor")
@@ -35,6 +34,18 @@ namespace Repositorio.Mapeamento
             builder.HasOne(x => x.Conta)
                    .WithMany(x => x.Movimentacoes)
                    .HasForeignKey(x => x.IdConta)
+                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Saques)
+                   .WithOne(x => x.Movimentacao)
+                   .HasForeignKey(x => x.IdMovimentacao)
+                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Depositos)
+                   .WithOne(x => x.Movimentacao)
+                   .HasForeignKey(x => x.IdMovimentacao)
+                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Transferencias)
+                   .WithOne(x => x.Movimentacao)
+                   .HasForeignKey(x => x.IdMovimentacao)
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }

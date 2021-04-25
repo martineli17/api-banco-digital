@@ -11,7 +11,7 @@ namespace Repositorio.Mapeamento
             builder.ToTable("Agencia");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
-                   .HasColumnName("IdAgencia")
+                   .HasColumnName("Id")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
             builder.Property(x => x.Numero)
