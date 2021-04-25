@@ -26,7 +26,10 @@ namespace Repositorio.Mapeamento
                     .HasColumnName("Tipo")
                     .HasColumnType("nvarchar(10)")
                     .IsRequired();
-           //To do 
+            builder.HasOne(x => x.Cliente)
+                    .WithOne(x => x.Cartao)
+                    .HasForeignKey<Cartao>(x => x.IdCliente)
+                    .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
