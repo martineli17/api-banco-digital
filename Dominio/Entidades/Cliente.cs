@@ -24,7 +24,7 @@ namespace Dominio.Entidades
             //Todo
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => 
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => 
             base.Validar(new ClienteValidator(), this); 
     }
 }

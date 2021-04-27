@@ -25,7 +25,7 @@ namespace Dominio.Entidades
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}";
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() =>
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() =>
             base.Validar(new CartaoValidator(), this);
     }
 }

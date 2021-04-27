@@ -8,8 +8,8 @@ namespace Dominio.Entidades.Bases
         public Guid IdConta { get; set; }
         public Guid IdMovimentacao { get; set; }
         public decimal Valor { get; set; }
-        public Movimentacao Movimentacao { get; private set; }
-        public void MovimentarConta(EnumEventoMovimentacao evento) =>
+        public Movimentacao Movimentacao { get; set; }
+        protected void MovimentarConta(EnumEventoMovimentacao evento) =>
             Movimentacao = new Movimentacao(IdConta, evento, Valor);
     }
 }

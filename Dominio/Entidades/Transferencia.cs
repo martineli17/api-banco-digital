@@ -11,6 +11,10 @@ namespace Dominio.Entidades
         public Guid IdContaDestino { get; set; }
         public DateTime DataAgendamento { get; set; }
         public Conta ContaDestino { get; set; }
+        public Transferencia()
+        {
+            base.MovimentarConta(EnumEventoMovimentacao.Transferencia);
+        }
         public Transferencia MovimentarConta()
         {
             base.MovimentarConta(EnumEventoMovimentacao.Transferencia);
@@ -24,6 +28,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new TransferenciaValidator(), this);
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new TransferenciaValidator(), this);
     }
 }

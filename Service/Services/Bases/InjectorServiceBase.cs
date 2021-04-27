@@ -1,5 +1,5 @@
 ﻿using Crosscuting.Notificacao;
-using Dominio.Interfaces.Repositorio;
+using Dominio.Interfaces.Repositorio.Bases;
 using Service.Validators.ValidadorBase;
 
 namespace Service.Services.ServicesBase

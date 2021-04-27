@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Repositorio
+namespace Dominio.Interfaces.Repositorio.Bases
 {
     public interface IUnitOfWork
     {

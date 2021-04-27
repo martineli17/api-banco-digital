@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Service
+namespace Dominio.Interfaces.Service.Bases
 {
     public interface IBaseAddService<TEntidade> where TEntidade : class
     {

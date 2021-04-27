@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Service
+namespace Dominio.Interfaces.Service.Bases
 {
     public interface IBaseUpdateService<TEntidade> where TEntidade : class
     {
-        Task<TEntidade> AddAsync(TEntidade entidade);
+        Task<TEntidade> UpdateAsync(TEntidade entidade);
     }
 }

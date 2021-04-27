@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Service
+namespace Dominio.Interfaces.Service.Bases
 {
     public interface IBaseQueryService<TEntidade> where TEntidade : class
     {

@@ -37,6 +37,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => (true, null);
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => (true, null);
     }
 }

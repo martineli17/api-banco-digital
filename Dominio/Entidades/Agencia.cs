@@ -8,6 +8,6 @@ namespace Dominio.Entidades
     {
         public string Numero { get; set; }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new AgenciaValidator(), this);
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new AgenciaValidator(), this);
     }
 }

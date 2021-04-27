@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Service
+namespace Dominio.Interfaces.Service.Bases
 {
     public interface IBaseRemoveService
     {

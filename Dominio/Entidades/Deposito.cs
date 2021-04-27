@@ -9,6 +9,10 @@ namespace Dominio.Entidades
     {
         public string NumeroBoleto { get; set; }
         public string Credenciador { get; set; }
+        public Deposito()
+        {
+            base.MovimentarConta(EnumEventoMovimentacao.Deposito);
+        }
         public Deposito MovimentarConta()
         {
             base.MovimentarConta(EnumEventoMovimentacao.Deposito);
@@ -22,6 +26,6 @@ namespace Dominio.Entidades
             return this;
         }
 
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new DepositoValidator(), this);
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new DepositoValidator(), this);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Dominio.Interfaces.Repositorio
+namespace Dominio.Interfaces.Repositorio.Bases
 {
     public interface IBaseRepositorio<TEntidade> where TEntidade : Base
     {

@@ -1,6 +1,6 @@
 ﻿using Crosscuting.Extensions;
 using Dominio.Entidades.Bases;
-using Dominio.Interfaces.Repositorio;
+using Dominio.Interfaces.Repositorio.Bases;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

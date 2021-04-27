@@ -16,7 +16,7 @@ namespace Dominio.Entidades
         public Cliente Cliente { get; set; }
         public ICollection<Movimentacao> Movimentacoes { get; set; }
         public ICollection<Transferencia> TransferenciasRecebidas { get; set; }
-        protected override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
+        public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
         public Conta()
         {
             Numero = GerarNumero();
