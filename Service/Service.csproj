@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\ValidatorsEntidades\" />
-  </ItemGroup>
-
 </Project>
