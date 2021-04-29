@@ -56,7 +56,7 @@ namespace Service.Services.Bases
         {
             if (!await Repositorio.ExistsAsync(x => x.Id == id))
             {
-                Injector.Notificador.Add("Registro solicitado não existe.");
+                Injector.Notificador.Add("Registro solicitado não encontrado.");
                 return false;
             }
             return true;

@@ -15,5 +15,6 @@
 
         public static string ErroNoProcesso = "Ocorreu um erro interno ao realizar a operação (001).";
         public static string IsEnum(string campo) => campo + " contém valor não identificado.";
+        public static string RegistroNaoEncontrado(string campo) => $"{campo} não encontrado.";
     }
 }

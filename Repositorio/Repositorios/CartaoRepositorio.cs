@@ -1,13 +1,10 @@
 ﻿using Dominio.Entidades;
-using Dominio.Entidades.Bases;
+using Dominio.Interfaces.Repositorio;
 using Repositorio.Repositorios.Bases;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Repositorio.Repositorios
 {
-    public class CartaoRepositorio : BaseRepositorio<Conta>
+    public class CartaoRepositorio : BaseRepositorio<Cartao>, ICartaoRepositorio
     {
         public CartaoRepositorio(InjectorRepositorio injector) : base(injector)
         {

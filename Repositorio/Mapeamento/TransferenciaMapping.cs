@@ -17,9 +17,6 @@ namespace Repositorio.Mapeamento
                    .HasColumnName("IdContaDestino")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
-            builder.Property(x => x.DataAgendamento)
-                   .HasColumnName("DataAgendamento")
-                   .HasColumnType("DateTime");
             builder.Property(x => x.Valor)
                    .HasColumnName("Valor")
                    .HasColumnType("numeric")

@@ -25,6 +25,9 @@ namespace Repositorio.Mapeamento
                    .HasColumnName("Vencimento")
                    .HasColumnType("date")
                    .IsRequired();
+            builder.Property(x => x.Ativo)
+                   .HasColumnName("Ativo")
+                   .HasColumnType("Bit");
             builder.Property(x => x.Tipo)
                     .HasColumnName("Tipo")
                     .HasColumnType("varchar(15)")

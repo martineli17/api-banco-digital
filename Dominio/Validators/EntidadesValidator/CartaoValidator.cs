@@ -9,6 +9,7 @@ namespace Dominio.Validators.EntidadesValidator
         public CartaoValidator()         
         {                                                                                                    
             RuleFor(x => x.IdCliente).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Cliente"));
+            RuleFor(x => x.Tipo).IsInEnum();
         }
     }
 }

@@ -25,6 +25,10 @@ namespace Dominio.Entidades
         public ICollection<Transferencia> Transferencias { get; set; }
         public ICollection<Deposito> Depositos { get; set; }
         public ICollection<Saque> Saques { get; set; }
+        public Movimentacao()
+        {
+
+        }
         public Movimentacao(Guid idConta, EnumEventoMovimentacao evento, decimal valor)
         {
             IdConta = idConta;

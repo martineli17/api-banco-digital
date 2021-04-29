@@ -11,6 +11,7 @@ namespace Dominio.Entidades
     {
         public Guid IdCliente { get; set; }
         public string Numero { get; private set; }
+        public bool Ativo { get; set; }
         public DateTime Vencimento { get; private set; }
         public EnumTipoCartao Tipo { get; set; }
         public Cliente Cliente { get; set; }
@@ -20,6 +21,16 @@ namespace Dominio.Entidades
             Vencimento = DateTime.Now.AddYears(4);
         }
         public bool IsVencido() => this.Vencimento < DateTime.Now;
+        public Cartao Ativar()
+        {
+            this.Ativo = true;
+            return this;
+        }
+        public Cartao Desativar()
+        {
+            this.Ativo = false;
+            return this;
+        }
         public string GerarNumero() =>  
                         $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +

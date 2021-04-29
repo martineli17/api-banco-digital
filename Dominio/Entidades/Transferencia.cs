@@ -9,7 +9,6 @@ namespace Dominio.Entidades
     public class Transferencia : OperacaoBase
     {
         public Guid IdContaDestino { get; set; }
-        public DateTime DataAgendamento { get; set; }
         public Conta ContaDestino { get; set; }
         public Transferencia()
         {

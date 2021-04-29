@@ -77,10 +77,28 @@ namespace Repositorio.Repositorios.Bases
             Injector.Context.Set<TEntity>().Update(entidade);
         }
 
+        public virtual async Task UpdatePropsAsync(TEntity entidade, params string[] propriedades)
+        {
+            await Task.Yield();
+            var entityEntry = Injector.Context.Entry(entidade);
+            foreach (var propriedade in propriedades) entityEntry.Property(propriedade).IsModified = true;
+        }
+
         public virtual async Task UpdateAsync(IEnumerable<TEntity> entidades)
         {
             await Task.Yield();
             Injector.Context.Set<TEntity>().UpdateRange(entidades);
+        }
+
+        public virtual async Task UpdatePropsAsync(IEnumerable<TEntity> entidades, params string[] propriedades)
+        {
+            await Task.Yield();
+            foreach (var entidade in entidades)
+            {
+                var entityEntry = Injector.Context.Entry(entidade);
+                foreach (var propriedade in propriedades)
+                    entityEntry.Property(propriedade).IsModified = true;
+            }
         }
     }
 }
