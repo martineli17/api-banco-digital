@@ -8,11 +8,9 @@ namespace Dominio.Validators.EntidadesValidator
     {
         public ContaValidator()
         {
-            RuleFor(x => x.IdCliente).NotEmpty().WithMessage(MensagemValidator.ErroNoProcesso);
-            RuleFor(x => x.Numero).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Número"))
-                .MaximumLength(50).WithMessage(MensagemValidator.NaoMaior("Número"));
-            RuleFor(x => x.Saldo).NotNull().WithMessage(MensagemValidator.NaoNuloOuVazio("Saldo")).
-                NotEmpty().WithMessage(MensagemValidator.ErroNoProcesso);
+            RuleFor(x => x.IdCliente).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Cliente"));
+            RuleFor(x => x.Numero).Length(11).WithMessage(MensagemValidator.ErroNoProcesso);
+            RuleFor(x => x.Saldo).GreaterThanOrEqualTo(0).WithMessage(MensagemValidator.ErroNoProcesso);
         }
     }
 }
