@@ -21,6 +21,8 @@ namespace Service.Services
 
         public new async Task<Conta> AddAsync(Conta entidade)
         {
+            if (!base.ValidarEntidade(entidade)) return null;
+
             if (!await ValidarContaDuplicada(entidade))
                 return entidade;
             await base.AddAsync(entidade);
