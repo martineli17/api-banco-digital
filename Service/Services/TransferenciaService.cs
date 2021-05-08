@@ -12,7 +12,7 @@ namespace Service.Services
     public class TransferenciaService : BaseService<Transferencia>, ITransferenciaService
     {
         private readonly IContaRepositorio _contaRepositorio;
-        public TransferenciaService(IBaseRepositorio<Transferencia> repositorio, InjectorServiceBase injector, 
+        public TransferenciaService(ITransferenciaRepositorio repositorio, InjectorServiceBase injector, 
                                     IContaRepositorio contaRepositorio)
             : base(repositorio, injector)
         {

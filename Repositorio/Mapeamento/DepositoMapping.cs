@@ -16,20 +16,24 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Credenciador)
                    .HasColumnName("Credenciador")
-                   .HasColumnType("nvarchar(50)")
+                   .HasColumnType("varchar(50)")
                    .IsRequired();
             builder.Property(x => x.NumeroBoleto)
                    .HasColumnName("NumeroBoleto")
-                   .HasColumnType("nvarchar(100)")
+                   .HasColumnType("varchar(100)")
                    .IsRequired();
             builder.Property(x => x.Valor)
                    .HasColumnName("Valor")
                    .HasColumnType("numeric")
                    .IsRequired();
+            builder.Property(x => x.IdMovimentacao)
+                  .HasColumnName("IdMovimentacao")
+                  .HasColumnType("UNIQUEIDENTIFIER")
+                  .IsRequired();
             builder.HasOne(x => x.Movimentacao)
                    .WithMany(x => x.Depositos)
                    .HasForeignKey(x => x.IdMovimentacao)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

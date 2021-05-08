@@ -21,10 +21,14 @@ namespace Repositorio.Mapeamento
                    .HasColumnName("Valor")
                    .HasColumnType("numeric")
                    .IsRequired();
+            builder.Property(x => x.IdMovimentacao)
+                 .HasColumnName("IdMovimentacao")
+                 .HasColumnType("UNIQUEIDENTIFIER")
+                 .IsRequired();
             builder.HasOne(x => x.Movimentacao)
                    .WithMany(x => x.Transferencias)
                    .HasForeignKey(x => x.IdMovimentacao)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(x => x.ContaDestino)
                    .WithMany(x => x.TransferenciasRecebidas)
                    .HasForeignKey(x => x.IdContaDestino)

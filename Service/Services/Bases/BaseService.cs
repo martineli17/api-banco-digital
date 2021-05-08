@@ -22,7 +22,13 @@ namespace Service.Services.Bases
 
         public async Task<IQueryable<TEntidade>> GetAsync(Expression<Func<TEntidade, bool>> query = null) => await Repositorio.GetAsync(query);
 
-        public async Task<TEntidade> GetByIdAsync(Guid id) => await Repositorio.GetByIdAsync(id);
+        public async Task<TEntidade> GetByIdAsync(Guid id) 
+        {
+            var entidade = await Repositorio.GetByIdAsync(id);
+            if (entidade is null)
+                Injector.Notificador.Add("Registro solicitado não encontrado.");
+            return entidade;
+        } 
 
         protected async Task<TEntidade> AddAsync(TEntidade entidade)
         {

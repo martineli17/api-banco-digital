@@ -16,9 +16,8 @@ namespace Service.Services
     public class ClienteService : BaseService<Cliente>, IClienteService
     {
         private readonly IClienteRepositorio _clienteRepositorio;
-        public ClienteService(IBaseRepositorio<Cliente> repositorio, InjectorServiceBase injector, IClienteRepositorio clienteRepositorio) : base(repositorio, injector)
+        public ClienteService(IClienteRepositorio repositorio, InjectorServiceBase injector) : base(repositorio, injector)
         {
-            _clienteRepositorio = clienteRepositorio;
         }
 
         public new async Task<Cliente> AddAsync(Cliente entidade)

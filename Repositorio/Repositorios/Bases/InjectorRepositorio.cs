@@ -5,10 +5,10 @@ namespace Repositorio.Repositorios.Bases
 {
     public class InjectorRepositorio
     {
-        public readonly Context Context;
+        public readonly Contexto.ContextoBanco Context;
         public readonly INotificador Notificador;
 
-        public InjectorRepositorio(Context context, INotificador notificador)
+        public InjectorRepositorio(Contexto.ContextoBanco context, INotificador notificador)
         {
             Context = context;
             Notificador = notificador;

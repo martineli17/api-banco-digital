@@ -13,7 +13,7 @@ namespace Service.Services
     public class CartaoService : BaseService<Cartao>, ICartaoService
     {
         private readonly IClienteRepositorio _clienteRepositorio;
-        public CartaoService(IBaseRepositorio<Cartao> repositorio, InjectorServiceBase injector,
+        public CartaoService(ICartaoRepositorio repositorio, InjectorServiceBase injector,
                              IClienteRepositorio clienteRepositorio) 
             : base(repositorio, injector)
         {

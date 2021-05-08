@@ -8,9 +8,9 @@ namespace Repositorio.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly Context _context;
+        private readonly Contexto.ContextoBanco _context;
         private readonly INotificador _notificador;
-        public UnitOfWork(Context context, INotificador notificador)
+        public UnitOfWork(Contexto.ContextoBanco context, INotificador notificador)
         {
             _context = context;
             _notificador = notificador;

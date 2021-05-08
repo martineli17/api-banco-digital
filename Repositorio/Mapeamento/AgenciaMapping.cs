@@ -16,7 +16,7 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Numero)
                    .HasColumnName("Numero")
-                   .HasColumnType("numeric")
+                   .HasColumnType("varchar(10)")
                    .IsRequired();
         }
     }

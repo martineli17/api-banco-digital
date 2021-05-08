@@ -19,12 +19,12 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Evento)
                    .HasColumnName("Evento")
-                   .HasColumnType("nvarchar(10)")
+                   .HasColumnType("varchar(10)")
                    .HasConversion(new EnumToStringConverter<EnumEventoMovimentacao>())
                    .IsRequired();
             builder.Property(x => x.Tipo)
                    .HasColumnName("Tipo")
-                   .HasColumnType("nvarchar(10)")
+                   .HasColumnType("varchar(10)")
                    .HasConversion(new EnumToStringConverter<EnumTipoMovimentacao>())
                    .IsRequired();
             builder.Property(x => x.Valor)
@@ -38,15 +38,15 @@ namespace Repositorio.Mapeamento
             builder.HasMany(x => x.Saques)
                    .WithOne(x => x.Movimentacao)
                    .HasForeignKey(x => x.IdMovimentacao)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.Depositos)
                    .WithOne(x => x.Movimentacao)
                    .HasForeignKey(x => x.IdMovimentacao)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.Transferencias)
                    .WithOne(x => x.Movimentacao)
                    .HasForeignKey(x => x.IdMovimentacao)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

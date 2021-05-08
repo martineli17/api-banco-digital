@@ -11,7 +11,7 @@ namespace Service.Services
     public class DepositoService : BaseService<Deposito>, IDepositoService
     {
         private readonly IContaRepositorio _contaRepositorio;
-        public DepositoService(IBaseRepositorio<Deposito> repositorio, InjectorServiceBase injector,
+        public DepositoService(IDepositoRepositorio repositorio, InjectorServiceBase injector,
                                IContaRepositorio contaRepositorio)
             : base(repositorio, injector)
         {

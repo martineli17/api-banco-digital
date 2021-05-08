@@ -18,7 +18,7 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Numero)
                    .HasColumnName("Numero")
-                   .HasColumnType("varchar(10)")
+                   .HasColumnType("varchar(20)")
                    .IsRequired();
             builder.Property(x => x.DataCriacao)
                    .HasColumnName("DataCriacao")
@@ -47,7 +47,7 @@ namespace Repositorio.Mapeamento
                    .OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.Cliente)
                    .WithOne(x => x.Conta)
-                   .HasForeignKey<Cliente>(x => x.IdConta)
+                   .HasForeignKey<Conta>(x => x.IdCliente)
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }

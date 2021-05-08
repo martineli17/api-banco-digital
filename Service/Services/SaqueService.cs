@@ -12,7 +12,7 @@ namespace Service.Services
     {
         private readonly IContaRepositorio _contaRepositorio;
         private readonly ICartaoRepositorio _cartaoRepositorio;
-        public SaqueService(IBaseRepositorio<Saque> repositorio, InjectorServiceBase injector,
+        public SaqueService(ISaqueRepositorio repositorio, InjectorServiceBase injector,
                             IContaRepositorio contaRepositorio, ICartaoRepositorio cartaoRepositorio)
             : base(repositorio, injector)
         {
