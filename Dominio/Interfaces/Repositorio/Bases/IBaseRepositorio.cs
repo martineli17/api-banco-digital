@@ -19,6 +19,6 @@ namespace Dominio.Interfaces.Repositorio.Bases
         Task UpdatePropsAsync(IEnumerable<TEntidade> entidade, params string[] propriedades);
         Task<IQueryable<TEntidade>> GetAsync(Expression<Func<TEntidade, bool>> query = null, params string[] includes);
         Task<bool> ExistsAsync(Expression<Func<TEntidade, bool>> query);
-        Task<TEntidade> GetByIdAsync(Guid id);
+        Task<TEntidade> GetByIdAsync(Guid id, params string[] includes);
     }
 }

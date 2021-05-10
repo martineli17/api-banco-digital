@@ -40,14 +40,20 @@ namespace Repositorio.Repositorios.Bases
                 query.Where(filter);
             return query;
         }
+        
         public virtual async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> query)
         {
             await Task.Yield();
             return await Injector.Context.Set<TEntity>().AnyAsync(query);
         }
-        public virtual async Task<TEntity> GetByIdAsync(Guid id)
+
+        public virtual async Task<TEntity> GetByIdAsync(Guid id, params string[] includes)
         {
-            var entidade = await Injector.Context.Set<TEntity>().FindAsync(id);
+            var query = Injector.Context.Set<TEntity>().AsQueryable();
+            if (includes.HasValue())
+                foreach (var include in includes)
+                    query = query.Include(include);
+            var entidade = await query.FirstOrDefaultAsync(x => x.Id == id);
             if (entidade != null)
                 Injector.Context.Entry(entidade).State = EntityState.Detached;
             return entidade;

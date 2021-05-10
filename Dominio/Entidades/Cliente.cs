@@ -1,7 +1,7 @@
 ﻿using Dominio.Entidades.Bases;
 using Dominio.Validators.EntidadesValidator;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Dominio.Entidades
 {

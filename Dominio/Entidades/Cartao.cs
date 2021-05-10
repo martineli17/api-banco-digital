@@ -31,6 +31,7 @@ namespace Dominio.Entidades
             this.Ativo = false;
             return this;
         }
+
         public string GerarNumero() =>  
                         $"{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
                         $" {Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}{Numero.RandonsNumbers()}" +
@@ -38,5 +39,31 @@ namespace Dominio.Entidades
 
         public override (bool IsValido, IReadOnlyList<string> Erros) Validar() =>
             base.Validar(new CartaoValidator(), this);
+
+        public Cartao MudarTipo(EnumTipoCartao tipo) =>
+            tipo switch
+            {
+                EnumTipoCartao.Credito => this.AtivarCredito(),
+                EnumTipoCartao.Debito => this.AtivarCreditoDebito(),
+                EnumTipoCartao.Debito_Credito => this.AtivarDebito(),
+                _ => throw new ArgumentOutOfRangeException("Tipo de cartão inválido")
+            };
+
+        public Cartao AtivarCredito()
+        {
+            this.Tipo = EnumTipoCartao.Credito;
+            return this;
+        }
+        public Cartao AtivarDebito()
+        {
+            this.Tipo = EnumTipoCartao.Debito;
+            return this;
+        }
+
+        public Cartao AtivarCreditoDebito()
+        {
+            this.Tipo = EnumTipoCartao.Debito_Credito;
+            return this;
+        }
     }
 }
