@@ -31,14 +31,7 @@ namespace Service.Services
 
         public new async Task<Cliente> UpdateAsync(Cliente entidade)
         {
-            if (await base.ValidarExistenciaEntidadeAsync(entidade.Id))
-            {
-                Injector.Notificador.Add("Não é possível atualizar este cliente.");
-                return null;
-            }
-
             if (!base.ValidarEntidade(entidade)) return null;
-
             await base.UpdateAsync(entidade);
             await base.CommitAsync();
             return entidade;
@@ -46,11 +39,9 @@ namespace Service.Services
 
         public new async Task<bool> RemoveAsync(Guid id)
         {
-            if (await base.ValidarExistenciaEntidadeAsync(id))
+            if (!await base.ValidarExistenciaEntidadeAsync(id))
                 return false;
             await base.RemoveAsync(id);
-            //Remover Conta relacionada ao cliente  
-            //Remover Cartao relacionado ao cliente 
             return await base.CommitAsync();
         }
     }

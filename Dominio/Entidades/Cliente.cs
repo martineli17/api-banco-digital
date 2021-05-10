@@ -15,15 +15,6 @@ namespace Dominio.Entidades
         [JsonIgnore]
         public Cartao Cartao { get; set; }
 
-        public void AtualizarDados()
-        {
-            //Todo
-        }
-        public void NovoCliente()
-        {
-            //Todo
-        }
-
         public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => 
             base.Validar(new ClienteValidator(), this); 
     }

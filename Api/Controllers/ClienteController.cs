@@ -40,8 +40,8 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Cliente), 201)]
-        [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
+        [ProducesResponseType(typeof(ClienteAddResponse), 201)]
+        [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
         public async Task<ActionResult<ClienteAddResponse>> Post([FromBody] ClienteAddRequest cliente)
         {
@@ -51,19 +51,19 @@ namespace Api.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(Cliente), 200)]
-        [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
+        [ProducesResponseType(typeof(ClienteUpdateResponse), 200)]
+        [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<ClienteAddResponse>> Put([FromBody] Cliente cliente)
+        public async Task<ActionResult<ClienteUpdateResponse>> Put([FromBody] ClienteUpdateRequest cliente)
         {
             var entidade = Injector.Mapper.Map<Cliente>(cliente);
             entidade = await _clienteService.UpdateAsync(entidade);
-            return CustomResponse(Injector.Mapper.Map<ClienteAddResponse>(entidade));
+            return CustomResponse(Injector.Mapper.Map<ClienteUpdateResponse>(entidade));
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
+        [ProducesResponseType(typeof(bool), 200)]
+        [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
         public async Task<ActionResult<bool>> Delete(Guid id) => CustomResponse(await _clienteService.RemoveAsync(id));
     }

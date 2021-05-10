@@ -20,7 +20,7 @@ namespace Api.Controllers.Base
         {
             return Injector.Notificador.IsValido() 
                 ? StatusCode(statusCodeSucesso, response)
-                : StatusCode(ContemRegistroNaoEncontrado() ? 404 : statusCodeFalha, response);
+                : StatusCode(ContemRegistroNaoEncontrado() ? 404 : statusCodeFalha, Injector.Notificador.Mensagens());
 
         }
 

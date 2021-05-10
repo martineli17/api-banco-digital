@@ -10,6 +10,8 @@ namespace Api.Core.Mappers
         {
             CreateMap<ClienteAddRequest, Cliente>();
             CreateMap<Cliente, ClienteAddResponse>();
+            CreateMap<Cliente, ClienteUpdateResponse>();
+            CreateMap<ClienteUpdateRequest, Cliente>();
         }
     }
 }

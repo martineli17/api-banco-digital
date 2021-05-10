@@ -38,7 +38,7 @@ namespace Repositorio.Repositorios.Bases
                     query = query.Include(include);
             if (filter != null)
                 query.Where(filter);
-            return query.Where(filter); ;
+            return query;
         }
         public virtual async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> query)
         {
