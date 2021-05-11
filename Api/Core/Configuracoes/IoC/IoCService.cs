@@ -14,6 +14,7 @@ namespace Api.Core.Configuracoes.IoC
             services.AddScoped<INotificador, Notificador>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<ICartaoService, CartaoService>();
+            services.AddScoped<IContaService, ContaService>();
             return services;
         }
     }

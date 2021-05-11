@@ -4,6 +4,7 @@ using Dominio.Validators.EntidadesValidator;
 using Dominio.ValuesType;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Dominio.Entidades
 {
@@ -13,8 +14,11 @@ namespace Dominio.Entidades
         public string Numero { get; private set; }
         public EnumTipoConta Tipo { get; set; }
         public decimal Saldo { get; set; }
+        [JsonIgnore]
         public Cliente Cliente { get; set; }
+        [JsonIgnore]
         public ICollection<Movimentacao> Movimentacoes { get; set; }
+        [JsonIgnore]
         public ICollection<Transferencia> TransferenciasRecebidas { get; set; }
         public override (bool IsValido, IReadOnlyList<string> Erros) Validar() => base.Validar(new ContaValidator(), this);
         public Conta()
