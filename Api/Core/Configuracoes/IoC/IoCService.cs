@@ -22,7 +22,9 @@ namespace Api.Core.Configuracoes.IoC
                     .AddScoped(x => new Lazy<IDepositoService>(x.GetService<IDepositoService>()));
             services.AddScoped<ITransferenciaService, TransferenciaService>()
                     .AddScoped(x => new Lazy<ITransferenciaService>(x.GetService<ITransferenciaService>()));
-            return services;
+            services.AddScoped<IMovimentacaoService, MovimentacaoService>()
+                    .AddScoped(x => new Lazy<IMovimentacaoService>(x.GetService<IMovimentacaoService>()));
+            return services; 
         }
     }
 }

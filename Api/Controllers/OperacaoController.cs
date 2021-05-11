@@ -18,16 +18,19 @@ namespace Api.Controllers
         private readonly Lazy<ISaqueService> _saqueService;
         private readonly Lazy<IDepositoService> _depositoService;
         private readonly Lazy<ITransferenciaService> _transferenciaService;
+        private readonly Lazy<IMovimentacaoService> _movimentacaoService;
         public OperacaoController(BaseControllerInjector injector,
                                  Lazy<ISaqueService> saqueService,
                                  Lazy<IDepositoService> depositoService,
-                                 Lazy<ITransferenciaService> transferenciaService
+                                 Lazy<ITransferenciaService> transferenciaService,
+                                 Lazy<IMovimentacaoService> movimentacaoService
                                  )
             : base(injector)
         {
             _saqueService = saqueService;
             _depositoService = depositoService;
             _transferenciaService = transferenciaService;
+            _movimentacaoService = movimentacaoService;
         }
 
         [HttpPost("transferencia")]
@@ -61,6 +64,16 @@ namespace Api.Controllers
             var entidade = Injector.Mapper.Map<Saque>(saque);
             entidade = await _saqueService.Value.AddAsync(entidade);
             return CustomResponse(Injector.Mapper.Map<SaqueAddResponse>(entidade), 201);
+        }
+
+        [HttpGet("movimentacao")]
+        [ProducesResponseType(typeof(IQueryable<Movimentacao>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
+        [ProducesResponseType(500)]
+        public async Task<ActionResult<IQueryable<Movimentacao>>> Movimentacao()
+        {
+            var movimentacoes = await _movimentacaoService.Value.GetAsync();
+            return CustomResponse(movimentacoes);
         }
     }
 }
