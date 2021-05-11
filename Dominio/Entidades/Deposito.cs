@@ -22,7 +22,7 @@ namespace Dominio.Entidades
         public Deposito Depositar()
         {
             if (this.Movimentacao is null) this.MovimentarConta();
-            this.Movimentacao.Conta.Saldo += this.Valor;
+            this.Movimentacao.Conta.Saldo += this.Movimentacao.Valor;
             return this;
         }
 

@@ -160,10 +160,6 @@ namespace Repositorio.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("IdConta")
-                        .HasColumnName("IdConta")
-                        .HasColumnType("UNIQUEIDENTIFIER");
-
                     b.Property<Guid>("IdMovimentacao")
                         .HasColumnName("IdMovimentacao")
                         .HasColumnType("UNIQUEIDENTIFIER");
@@ -172,10 +168,6 @@ namespace Repositorio.Migrations
                         .IsRequired()
                         .HasColumnName("NumeroBoleto")
                         .HasColumnType("varchar(100)");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnName("Valor")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -227,10 +219,6 @@ namespace Repositorio.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("IdConta")
-                        .HasColumnName("IdConta")
-                        .HasColumnType("UNIQUEIDENTIFIER");
-
                     b.Property<Guid>("IdMovimentacao")
                         .HasColumnName("IdMovimentacao")
                         .HasColumnType("UNIQUEIDENTIFIER");
@@ -239,10 +227,6 @@ namespace Repositorio.Migrations
                         .IsRequired()
                         .HasColumnName("IdentificadorCaixaEletronico")
                         .HasColumnType("varchar(100)");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnName("Valor")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -260,10 +244,6 @@ namespace Repositorio.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("IdConta")
-                        .HasColumnName("IdConta")
-                        .HasColumnType("UNIQUEIDENTIFIER");
-
                     b.Property<Guid>("IdContaDestino")
                         .HasColumnName("IdContaDestino")
                         .HasColumnType("UNIQUEIDENTIFIER");
@@ -271,10 +251,6 @@ namespace Repositorio.Migrations
                     b.Property<Guid>("IdMovimentacao")
                         .HasColumnName("IdMovimentacao")
                         .HasColumnType("UNIQUEIDENTIFIER");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnName("Valor")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 

@@ -11,7 +11,7 @@ namespace Dominio.Validators.EntidadesValidator
         {
             RuleFor(x => x).SetValidator(new OperacaoBaseValidator());
             RuleFor(x => x.IdentificadorCaixaEletronico).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Caixa eletrônico"));
-            RuleFor(x => x.Movimentacao.Conta.Saldo).GreaterThanOrEqualTo(x => x.Valor).WithMessage(x => $"Saldo insuficiente. Valor disponível: {x.Movimentacao.Conta.Saldo.ToString("N2")}");
+            RuleFor(x => x.Movimentacao.Conta.Saldo).GreaterThanOrEqualTo(x => x.Movimentacao.Valor).WithMessage(x => $"Saldo insuficiente. Valor disponível: {x.Movimentacao.Conta.Saldo.ToString("N2")}");
         }
     }
 }

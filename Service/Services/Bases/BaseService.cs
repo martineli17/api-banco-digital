@@ -29,7 +29,7 @@ namespace Service.Services.Bases
             if (entidade is null)
                 Injector.Notificador.Add("Registro solicitado não encontrado.");
             return entidade;
-        } 
+        }
 
         protected async Task<TEntidade> AddAsync(TEntidade entidade)
         {
