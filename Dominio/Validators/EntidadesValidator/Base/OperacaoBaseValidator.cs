@@ -8,8 +8,8 @@ namespace Dominio.Validators.EntidadesValidator.Base
     {
         public OperacaoBaseValidator()
         {
-            RuleFor(x => x.Valor).GreaterThan(0).WithMessage(MensagemValidator.NaoMenorOuIgual("Valor"));
-            RuleFor(x => x.IdConta).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Conta"));
+            RuleFor(x => x.Movimentacao.Valor).GreaterThan(0).WithMessage(MensagemValidator.NaoMenorOuIgual("Valor"));
+            RuleFor(x => x.Movimentacao.IdConta).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Conta"));
             RuleFor(x => x.Movimentacao.Conta).NotNull().WithMessage("Conta não existente.");
         }
     }

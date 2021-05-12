@@ -5,11 +5,13 @@ namespace Dominio.Entidades.Bases
 {
     public abstract class OperacaoBase : Base
     {
-        public Guid IdConta { get; set; }
         public Guid IdMovimentacao { get; set; }
-        public decimal Valor { get; set; }
         public Movimentacao Movimentacao { get; set; }
-        protected void MovimentarConta(EnumEventoMovimentacao evento) =>
-            Movimentacao = new Movimentacao(IdConta, evento, Valor);
+        protected void MovimentarConta(EnumEventoMovimentacao evento) =>  Movimentacao.Evento = evento;
+
+        public OperacaoBase()
+        {
+            Movimentacao = new Movimentacao();
+        }
     }
 }

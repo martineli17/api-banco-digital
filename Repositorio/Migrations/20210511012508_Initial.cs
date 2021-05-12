@@ -108,9 +108,7 @@ namespace Repositorio.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCriacao = table.Column<DateTime>(nullable: false),
-                    IdConta = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     IdMovimentacao = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
-                    Valor = table.Column<decimal>(type: "numeric", nullable: false),
                     NumeroBoleto = table.Column<string>(type: "varchar(100)", nullable: false),
                     Credenciador = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
@@ -130,9 +128,7 @@ namespace Repositorio.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCriacao = table.Column<DateTime>(nullable: false),
-                    IdConta = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     IdMovimentacao = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
-                    Valor = table.Column<decimal>(type: "numeric", nullable: false),
                     IdentificadorCaixaEletronico = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
@@ -151,9 +147,7 @@ namespace Repositorio.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     DataCriacao = table.Column<DateTime>(nullable: false),
-                    IdConta = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
                     IdMovimentacao = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false),
-                    Valor = table.Column<decimal>(type: "numeric", nullable: false),
                     IdContaDestino = table.Column<Guid>(type: "UNIQUEIDENTIFIER", nullable: false)
                 },
                 constraints: table =>

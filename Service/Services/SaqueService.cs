@@ -22,7 +22,7 @@ namespace Service.Services
 
         public new async Task<Saque> AddAsync(Saque entidade)
         {
-            entidade.Movimentacao.Conta = await _contaRepositorio.GetByIdAsync(entidade.IdConta);
+            entidade.Movimentacao.Conta = await _contaRepositorio.GetByIdAsync(entidade.Movimentacao.IdConta);
             if (!base.ValidarEntidade(entidade)) return null;
             if(await _cartaoRepositorio.ExistsAsync(x => !x.Ativo && x.IdCliente == entidade.Movimentacao.Conta.IdCliente))
             {
@@ -30,6 +30,7 @@ namespace Service.Services
                 return null;
             }
             entidade.Sacar();
+            await _contaRepositorio.UpdatePropsAsync(entidade.Movimentacao.Conta, nameof(Conta.Saldo));
             await base.AddAsync(entidade);
             await base.CommitAsync();
             return entidade;

@@ -20,7 +20,7 @@ namespace Dominio.Entidades
         public Saque Sacar()
         {
             if (this.Movimentacao is null) this.MovimentarConta();
-            this.Movimentacao.Conta.Saldo -= this.Valor;
+            this.Movimentacao.Conta.Saldo -= this.Movimentacao.Valor;
             return this;
         }
 

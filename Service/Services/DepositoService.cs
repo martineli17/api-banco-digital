@@ -20,9 +20,10 @@ namespace Service.Services
 
         public new async Task<Deposito> AddAsync(Deposito entidade)
         {
-            entidade.Movimentacao.Conta = await _contaRepositorio.GetByIdAsync(entidade.IdConta);
+            entidade.Movimentacao.Conta = await _contaRepositorio.GetByIdAsync(entidade.Movimentacao.IdConta);
             if (!base.ValidarEntidade(entidade)) return null;
             entidade.Depositar();
+            await _contaRepositorio.UpdateAsync(entidade.Movimentacao.Conta);
             await base.AddAsync(entidade);
             await base.CommitAsync();
             return entidade;

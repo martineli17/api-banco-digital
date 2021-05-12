@@ -15,7 +15,12 @@ namespace Api.Core.Configuracoes.IoC
             services.AddScoped<InjectorRepositorio>();
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<ICartaoRepositorio, CartaoRepositorio>();
+            services.AddScoped<ISaqueRepositorio, SaqueRepositorio>();
+            services.AddScoped<ITransferenciaRepositorio, TransferenciaRepositorio>();
+            services.AddScoped<IDepositoRepositorio, DepositoRepositorio>();
+            services.AddScoped<IMovimentacaoRepositorio, MovimentacaoRepositorio>();
             services.AddScoped<IContaRepositorio, ContaRepositorio>();
+            services.AddScoped<IAgenciaRepositorio, AgenciaRepositorio>();
             return services;
         }
     }

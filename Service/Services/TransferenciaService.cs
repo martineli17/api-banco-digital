@@ -21,9 +21,9 @@ namespace Service.Services
 
         public new async Task<Transferencia> AddAsync(Transferencia entidade)
         {
-            var contas = (await _contaRepositorio.GetAsync(x => x.Id == entidade.IdConta || x.Id == entidade.IdContaDestino)).ToList();
+            var contas = (await _contaRepositorio.GetAsync(x => x.Id == entidade.Movimentacao.IdConta || x.Id == entidade.IdContaDestino)).ToList();
             entidade.ContaDestino = contas?.FirstOrDefault(x => x.Id == entidade.IdContaDestino);
-            entidade.Movimentacao.Conta = contas?.FirstOrDefault(x => x.Id == entidade.IdConta);
+            entidade.Movimentacao.Conta = contas?.FirstOrDefault(x => x.Id == entidade.Movimentacao.IdConta);
             if (!base.ValidarEntidade(entidade)) return null;
             entidade.Transferir();
             await base.AddAsync(entidade);

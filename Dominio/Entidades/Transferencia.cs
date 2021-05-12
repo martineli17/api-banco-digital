@@ -22,8 +22,8 @@ namespace Dominio.Entidades
         public Transferencia Transferir()
         {
             if (this.Movimentacao is null) this.MovimentarConta();
-            this.ContaDestino.Saldo += this.Valor;
-            this.Movimentacao.Conta.Saldo -= this.Valor;
+            this.ContaDestino.Saldo += this.Movimentacao.Valor;
+            this.Movimentacao.Conta.Saldo -= this.Movimentacao.Valor;
             return this;
         }
 
