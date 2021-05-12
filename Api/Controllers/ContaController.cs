@@ -4,7 +4,6 @@ using Api.Core.DTO.ContaDTOs;
 using Crosscuting.Notificacao;
 using Dominio.Entidades;
 using Dominio.Interfaces.Service;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
-    [Microsoft.AspNetCore.Components.Route(Urls.Version01 + "conta")]
+    [Route(Urls.Version01 + "conta")]
     public class ContaController : BaseController
     {
         private readonly IContaService _contaService;
