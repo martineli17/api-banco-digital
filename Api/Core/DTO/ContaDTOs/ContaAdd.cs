@@ -9,9 +9,7 @@ namespace Api.Core.DTO.ContaDTOs
     public class ContaAddRequest
     {
         public Guid IdCliente { get; set; }
-        public string Numero { get; set; }
         public EnumTipoConta Tipo { get; set; }
-        public decimal Saldo { get; set; }
 
     }
 
