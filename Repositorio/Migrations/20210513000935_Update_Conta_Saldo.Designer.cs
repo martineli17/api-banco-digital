@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositorio.Contexto;
 
 namespace Repositorio.Migrations
 {
     [DbContext(typeof(ContextoBanco))]
-    partial class ContextoBancoModelSnapshot : ModelSnapshot
+    [Migration("20210513000935_Update_Conta_Saldo")]
+    partial class Update_Conta_Saldo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,8 +152,7 @@ namespace Repositorio.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Credenciador")
                         .IsRequired()
@@ -159,8 +160,7 @@ namespace Repositorio.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnName("DataCriacao")
-                        .HasColumnType("Datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("IdMovimentacao")
                         .HasColumnName("IdMovimentacao")
@@ -190,7 +190,7 @@ namespace Repositorio.Migrations
                     b.Property<string>("Evento")
                         .IsRequired()
                         .HasColumnName("Evento")
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<Guid>("IdConta")
                         .HasColumnName("IdConta")
@@ -216,12 +216,10 @@ namespace Repositorio.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnName("DataCriacao")
-                        .HasColumnType("Datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("IdMovimentacao")
                         .HasColumnName("IdMovimentacao")
@@ -243,12 +241,10 @@ namespace Repositorio.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("UNIQUEIDENTIFIER");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnName("DataCriacao")
-                        .HasColumnType("Datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("IdContaDestino")
                         .HasColumnName("IdContaDestino")
@@ -317,7 +313,7 @@ namespace Repositorio.Migrations
                     b.HasOne("Dominio.Entidades.Conta", "ContaDestino")
                         .WithMany("TransferenciasRecebidas")
                         .HasForeignKey("IdContaDestino")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Dominio.Entidades.Movimentacao", "Movimentacao")

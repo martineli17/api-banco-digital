@@ -19,7 +19,7 @@ namespace Dominio.Entidades
                  DefinirTipo();
             } 
         }
-        public EnumTipoMovimentacao Tipo { get; private set; }
+        public EnumTipoMovimentacao Tipo { get; set; }
         public decimal Valor { get; set; }
         public Conta Conta { get; set; }
         public ICollection<Transferencia> Transferencias { get; set; }

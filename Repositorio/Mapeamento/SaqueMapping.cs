@@ -10,6 +10,14 @@ namespace Repositorio.Mapeamento
         {
             builder.ToTable("Saque");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                  .HasColumnName("Id")
+                  .HasColumnType("UNIQUEIDENTIFIER")
+                  .IsRequired();
+            builder.Property(x => x.DataCriacao)
+                  .HasColumnName("DataCriacao")
+                  .HasColumnType("Datetime")
+                  .IsRequired();
             builder.Property(x => x.IdentificadorCaixaEletronico)
                    .HasColumnName("IdentificadorCaixaEletronico")
                    .HasColumnType("varchar(100)")

@@ -30,7 +30,7 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Saldo)
                   .HasColumnName("Saldo")
-                  .HasColumnType("numeric")
+                  .HasColumnType("numeric(19,2)")
                   .IsRequired();
             builder.Property(x => x.Tipo)
                   .HasColumnName("Tipo")

@@ -10,6 +10,14 @@ namespace Repositorio.Mapeamento
         {
             builder.ToTable("Transferencia");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                   .HasColumnName("Id")
+                   .HasColumnType("UNIQUEIDENTIFIER")
+                   .IsRequired();
+            builder.Property(x => x.DataCriacao)
+                  .HasColumnName("DataCriacao")
+                  .HasColumnType("Datetime")
+                  .IsRequired();
             builder.Property(x => x.IdContaDestino)
                    .HasColumnName("IdContaDestino")
                    .HasColumnType("UNIQUEIDENTIFIER")
@@ -25,7 +33,7 @@ namespace Repositorio.Mapeamento
             builder.HasOne(x => x.ContaDestino)
                    .WithMany(x => x.TransferenciasRecebidas)
                    .HasForeignKey(x => x.IdContaDestino)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

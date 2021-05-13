@@ -19,7 +19,7 @@ namespace Repositorio.Mapeamento
                    .IsRequired();
             builder.Property(x => x.Evento)
                    .HasColumnName("Evento")
-                   .HasColumnType("varchar(10)")
+                   .HasColumnType("varchar(20)")
                    .HasConversion(new EnumToStringConverter<EnumEventoMovimentacao>())
                    .IsRequired();
             builder.Property(x => x.Tipo)

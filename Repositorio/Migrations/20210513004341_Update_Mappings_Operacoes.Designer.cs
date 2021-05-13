@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositorio.Contexto;
 
 namespace Repositorio.Migrations
 {
     [DbContext(typeof(ContextoBanco))]
-    partial class ContextoBancoModelSnapshot : ModelSnapshot
+    [Migration("20210513004341_Update_Mappings_Operacoes")]
+    partial class Update_Mappings_Operacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +192,7 @@ namespace Repositorio.Migrations
                     b.Property<string>("Evento")
                         .IsRequired()
                         .HasColumnName("Evento")
-                        .HasColumnType("varchar(20)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<Guid>("IdConta")
                         .HasColumnName("IdConta")
