@@ -6,7 +6,7 @@
 
 ## Como iniciar
 #### Depois de obter os requisitos acima e baixar a aplicação, será necessário você inicie ela. 
-#### Caso você esteja utilizando o Visual Studio, garante que o projeto selecionado seja o 'Apresentation' (na aba superior próximo às opções de ambientes de execução).
+#### Caso você esteja utilizando o Visual Studio, garante que o projeto selecionado seja o 'Api' (na aba superior próximo às opções de ambientes de execução).
 #### Após isso, selecione o ambiente de execução 'IIS Express' e clique para iniciar a aplicação. 
 
 ## Observações
