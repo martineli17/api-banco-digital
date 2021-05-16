@@ -33,6 +33,11 @@ namespace Api
                 options.JsonSerializerOptions.IgnoreNullValues = true;
                 options.JsonSerializerOptions.WriteIndented = true;
             });
+            services.AddCors(options => options.AddPolicy("CorsOptions", x =>
+                                                x.AllowAnyHeader()
+                                                .AllowAnyMethod()
+                                                .AllowCredentials()
+                                                .WithOrigins("http://localhost:4200")));
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" }));
             services.AddIoCRepositorio();
             services.AddIoCService();
@@ -54,6 +59,9 @@ namespace Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
             }
+
+            app.UseCors("CorsOptions");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

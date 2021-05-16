@@ -44,8 +44,8 @@ namespace Dominio.Entidades
             tipo switch
             {
                 EnumTipoCartao.Credito => this.AtivarCredito(),
-                EnumTipoCartao.Debito => this.AtivarCreditoDebito(),
-                EnumTipoCartao.Debito_Credito => this.AtivarDebito(),
+                EnumTipoCartao.Debito => this.AtivarDebito(),
+                EnumTipoCartao.Debito_Credito => this.AtivarCreditoDebito(),
                 _ => throw new ArgumentOutOfRangeException("Tipo de cartão inválido")
             };
 

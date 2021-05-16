@@ -11,6 +11,7 @@ namespace Api.Core.DTO.CartaoDTOs
 
     public class CartaoAddResponse
     {
+        public Guid Id { get; set; }
         public Guid IdCliente { get; set; }
         public string Numero { get; private set; }
         public bool Ativo { get; set; }

@@ -36,8 +36,8 @@ namespace Api.Controllers
         [ProducesResponseType(500)]
         public async Task<ActionResult<Cartao>> Get([FromRoute] Guid id)
         {
-            var cliente = await _cartaoService.GetByIdAsync(id);
-            return CustomResponse(cliente, 200, cliente is null ? 404 : 400);
+            var cartao = await _cartaoService.GetByIdAsync(id);
+            return CustomResponse(cartao, 200, cartao is null ? 404 : 400);
         }
 
         [HttpPost]
