@@ -37,7 +37,7 @@ namespace Repositorio.Repositorios.Bases
                 foreach (var include in includes)
                     query = query.Include(include);
             if (filter != null)
-                query.Where(filter);
+                query = query.Where(filter);
             return query;
         }
         

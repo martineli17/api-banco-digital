@@ -23,7 +23,7 @@ namespace Service.Services
         public new async Task<Cliente> AddAsync(Cliente entidade)
         {
             if (!base.ValidarEntidade(entidade)) return null;
-            
+            if (!await ValidarCpf(entidade.Cpf)) return null;
             await base.AddAsync(entidade);
             await base.CommitAsync();
             return entidade;
@@ -32,6 +32,7 @@ namespace Service.Services
         public new async Task<Cliente> UpdateAsync(Cliente entidade)
         {
             if (!base.ValidarEntidade(entidade)) return null;
+            if (!await ValidarCpf(entidade.Cpf)) return null;
             await base.UpdateAsync(entidade);
             await base.CommitAsync();
             return entidade;
@@ -44,5 +45,17 @@ namespace Service.Services
             await base.RemoveAsync(id);
             return await base.CommitAsync();
         }
+
+        #region Métodos Privados
+        public async Task<bool> ValidarCpf(string cpf)
+        {
+            if (await base.ValidarExistenciaEntidadeAsync(x => x.Cpf == cpf))
+            {
+                Injector.Notificador.Add("CPF já cadastrado");
+                return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }

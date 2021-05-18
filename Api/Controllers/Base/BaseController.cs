@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Api.Controllers.Base
 {
+    [Authorize]
     [EnableQuery()]
     [ApiController]
     [Consumes("application/json")]

@@ -41,10 +41,11 @@ namespace Api
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" }));
             services.AddIoCRepositorio();
             services.AddIoCService();
-            services.AddIoCAplicacao();
+            services.AddIoCAplicacao(Configuration);
             services.AddDataBase(Configuration);
             services.AddAutoMapper(GetType().Assembly);
             services.AddODataCustom();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +66,8 @@ namespace Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
