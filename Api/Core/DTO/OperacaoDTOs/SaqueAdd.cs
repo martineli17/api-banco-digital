@@ -1,4 +1,6 @@
-﻿namespace Api.Core.DTO.OperacaoDTOs
+﻿using System;
+
+namespace Api.Core.DTO.OperacaoDTOs
 {
     public class SaqueAddRequest : OperacaoBaseAdd
     {
@@ -8,5 +10,6 @@
     public class SaqueAddResponse : OperacaoBaseAdd
     {
         public string IdentificadorCaixaEletronico { get; set; }
+        public Guid IdConta { get; set; }
     }
 }

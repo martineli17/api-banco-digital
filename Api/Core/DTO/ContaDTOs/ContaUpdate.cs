@@ -1,17 +1,18 @@
 ﻿using Dominio.ValuesType;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Core.DTO.ContaDTOs
 {
-    public class ContaUpdateRequest
+    public class ContaUpdateTipoRequest
     {
-        public Guid Id { get; set; }
         public EnumTipoConta Tipo { get; set; }
     }
-    
+
+    public class ContaUpdateAtivoRequest
+    {
+        public bool Ativo { get; set; }
+    }
+
     public class ContaUpdateResponse
     {
         public Guid Id { get; set; }
@@ -19,5 +20,6 @@ namespace Api.Core.DTO.ContaDTOs
         public string Numero { get; set; }
         public EnumTipoConta Tipo { get; set; }
         public decimal Saldo { get; set; }
+        public bool Ativo { get; set; }
     }
 }

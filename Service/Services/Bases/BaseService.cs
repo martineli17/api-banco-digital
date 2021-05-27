@@ -69,6 +69,16 @@ namespace Service.Services.Bases
             return true;
         }
 
+        protected bool ValidarExistenciaEntidadeAsync(TEntidade entidade)
+        {
+            if (entidade != null)
+            {
+                Injector.Notificador.Add("Registro solicitado não encontrado.");
+                return false;
+            }
+            return true;
+        }
+
         protected async Task<bool> ValidarExistenciaEntidadeAsync(Expression<Func<TEntidade, bool>> filter)
             => await Repositorio.ExistsAsync(filter);
 

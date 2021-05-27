@@ -2,7 +2,7 @@
 {
     public enum EnumTipoConta
     {
-        Poupanca,
-        Corrente
+        Poupanca = 1,
+        Corrente = 2,
     }
 }

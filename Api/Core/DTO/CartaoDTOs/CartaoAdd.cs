@@ -5,7 +5,6 @@ namespace Api.Core.DTO.CartaoDTOs
 {
     public class CartaoAddRequest
     {
-        public Guid IdCliente { get; set; }
         public EnumTipoCartao Tipo { get; set; }
     }
 

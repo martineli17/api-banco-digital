@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositorio.Contexto;
 
 namespace Repositorio.Migrations
 {
     [DbContext(typeof(ContextoBanco))]
-    partial class ContextoBancoModelSnapshot : ModelSnapshot
+    [Migration("20210527005105_FKS_Movimentacoes")]
+    partial class FKS_Movimentacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,12 +117,6 @@ namespace Repositorio.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
                         .HasColumnType("UNIQUEIDENTIFIER");
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Ativo")
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnName("DataCriacao")
@@ -287,7 +283,7 @@ namespace Repositorio.Migrations
                     b.HasOne("Dominio.Entidades.Cliente", "Cliente")
                         .WithOne("Conta")
                         .HasForeignKey("Dominio.Entidades.Conta", "IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -305,7 +301,7 @@ namespace Repositorio.Migrations
                     b.HasOne("Dominio.Entidades.Conta", "Conta")
                         .WithMany("Movimentacoes")
                         .HasForeignKey("IdConta")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

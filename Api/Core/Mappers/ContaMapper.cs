@@ -15,7 +15,7 @@ namespace Api.Core.Mappers
             CreateMap<ContaAddRequest, Conta>();
             CreateMap<Conta, ContaAddResponse>();
             CreateMap<Conta, ContaUpdateResponse>();
-            CreateMap<ContaUpdateRequest, Conta>();
+            CreateMap<ContaUpdateTipoRequest, Conta>();
         }
     }
 }

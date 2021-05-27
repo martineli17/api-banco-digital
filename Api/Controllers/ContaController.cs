@@ -1,6 +1,7 @@
 ﻿using Api.Controllers.Base;
 using Api.Core.Constantes;
 using Api.Core.DTO.ContaDTOs;
+using Api.Core.Services;
 using Crosscuting.Notificacao;
 using Dominio.Entidades;
 using Dominio.Interfaces.Service;
@@ -16,11 +17,14 @@ namespace Api.Controllers
     public class ContaController : BaseController
     {
         private readonly IContaService _contaService;
-
-        public ContaController(BaseControllerInjector injector, IContaService contaService)
+        private readonly UserService _userService;
+        public ContaController(BaseControllerInjector injector, 
+                               IContaService contaService,
+                               UserService userService)
          : base(injector)
         {
             _contaService = contaService;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -29,14 +33,14 @@ namespace Api.Controllers
         [ProducesResponseType(500)]
         public async Task<ActionResult<IQueryable<Conta>>> Get() => CustomResponse(await _contaService.GetAsync());
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(IQueryable<Conta>), 200)]
+        [HttpGet("cliente")]
+        [ProducesResponseType(typeof(Conta), 200)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 404)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
         public async Task<ActionResult<Conta>> Get([FromRoute] Guid id)
         {
-            var conta = await _contaService.GetByIdAsync(id);
+            var conta = (await _contaService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault();
             return CustomResponse(conta, 200, conta is null ? 404 : 400);
         }
 
@@ -47,25 +51,40 @@ namespace Api.Controllers
         public async Task<ActionResult<ContaAddResponse>> Post([FromBody] ContaAddRequest conta)
         {
             var entidade = Injector.Mapper.Map<Conta>(conta);
+            entidade.IdCliente = _userService.GetId();
             entidade = await _contaService.AddAsync(entidade);
             return CustomResponse(Injector.Mapper.Map<ContaAddResponse>(entidade));
         }
 
-        [HttpPut]
+        [HttpPut("tipo")]
         [ProducesResponseType(typeof(ContaUpdateResponse), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<ContaUpdateResponse>> Put([FromBody] ContaUpdateRequest conta)
+        public async Task<ActionResult<ContaUpdateResponse>> UpdateTipo([FromBody] ContaUpdateTipoRequest conta)
         {
-            var entidade = Injector.Mapper.Map<Conta>(conta);
-            entidade = await _contaService.UpdateAsync(entidade);
+            var idConta = await GetIdConta();
+            if(!idConta.HasValue)
+                return CustomResponse<ContaUpdateResponse>(null, 404, 404);
+            var entidade = await _contaService.UpdateTipoAsync(idConta.Value, conta.Tipo);
             return CustomResponse(Injector.Mapper.Map<ContaUpdateResponse>(entidade));
         }
 
-        [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(bool), 200)]
+        [HttpPut("status")]
+        [ProducesResponseType(typeof(ContaUpdateResponse), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<bool>> Delete(Guid id) => CustomResponse(await _contaService.RemoveAsync(id));
+        public async Task<ActionResult<ContaUpdateResponse>> UpdateAtivo([FromBody] ContaUpdateAtivoRequest conta)
+        {
+            var idConta = await GetIdConta();
+            if (!idConta.HasValue)
+                return CustomResponse<ContaUpdateResponse>(null, 404, 404);
+            var entidade = await _contaService.UpdateStatusAsync(idConta.Value, conta.Ativo);
+            return CustomResponse(Injector.Mapper.Map<ContaUpdateResponse>(entidade));
+        }
+
+        #region Métodos Privados
+        private async Task<Guid?> GetIdConta() =>
+         (await _contaService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault()?.Id;
+        #endregion
     }
 }

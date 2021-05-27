@@ -16,6 +16,11 @@ namespace Repositorio.Mapeamento
                    .HasColumnName("Id")
                    .HasColumnType("UNIQUEIDENTIFIER")
                    .IsRequired();
+            builder.Property(x => x.Ativo)
+                  .HasColumnName("Ativo")
+                  .HasColumnType("bit")
+                  .HasDefaultValueSql("0")
+                  .IsRequired();
             builder.Property(x => x.Numero)
                    .HasColumnName("Numero")
                    .HasColumnType("varchar(20)")

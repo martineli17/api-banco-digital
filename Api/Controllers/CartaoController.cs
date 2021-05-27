@@ -1,6 +1,7 @@
 ﻿using Api.Controllers.Base;
 using Api.Core.Constantes;
 using Api.Core.DTO.CartaoDTOs;
+using Api.Core.Services;
 using Crosscuting.Notificacao;
 using Dominio.Entidades;
 using Dominio.Interfaces.Service;
@@ -17,26 +18,33 @@ namespace Api.Controllers
     public class CartaoController : BaseController
     {
         private readonly ICartaoService _cartaoService;
-        public CartaoController(BaseControllerInjector injector, ICartaoService cartaoService)
+        private readonly UserService _userService;
+        public CartaoController(BaseControllerInjector injector, 
+                                ICartaoService cartaoService,
+                                UserService userService)
             : base(injector)
         {
             _cartaoService = cartaoService;
+            _userService = userService;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(IQueryable<Cartao>), 200)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<IQueryable<Cartao>>> Get() => CustomResponse(await _cartaoService.GetAsync());
+        public async Task<ActionResult<IQueryable<Cartao>>> Get() =>  CustomResponse(await _cartaoService.GetAsync());
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(IQueryable<Cartao>), 200)]
+        [HttpGet("cliente")]
+        [ProducesResponseType(typeof(Cartao), 200)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 404)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<Cartao>> Get([FromRoute] Guid id)
+        public async Task<ActionResult<Cartao>> GetByCliente()
         {
-            var cartao = await _cartaoService.GetByIdAsync(id);
+            var idCartao = (await _cartaoService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault()?.Id;
+            if (!idCartao.HasValue)
+                return CustomResponse<Cartao>(null, 404, 404);
+            var cartao = await _cartaoService.GetByIdAsync(idCartao.Value);
             return CustomResponse(cartao, 200, cartao is null ? 404 : 400);
         }
 
@@ -47,24 +55,35 @@ namespace Api.Controllers
         public async Task<ActionResult<CartaoAddResponse>> Post([FromBody] CartaoAddRequest cartao)
         {
             var entidade = Injector.Mapper.Map<Cartao>(cartao);
+            entidade.IdCliente = _userService.GetId();
             entidade = await _cartaoService.AddAsync(entidade);
             return CustomResponse(Injector.Mapper.Map<CartaoAddResponse>(entidade));
         }
 
-        [HttpPut("status/{id}/{status}")]
+        [HttpPut("status/{status}")]
         [ProducesResponseType(typeof(bool), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 404)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<bool>> Status([FromRoute] Guid id, [FromRoute] bool status)
-            => CustomResponse(await _cartaoService.StatusAsync(id, status));
+        public async Task<ActionResult<bool>> Status([FromRoute] bool status)
+        {
+            var idCartao = (await _cartaoService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault()?.Id;
+            if (!idCartao.HasValue)
+                return CustomResponse<bool>(false, 404, 404);
+            return CustomResponse(await _cartaoService.StatusAsync(idCartao.Value, status));
+        }
 
-        [HttpPut("tipo/{id}/{tipo}")]
+        [HttpPut("tipo/{tipo}")]
         [ProducesResponseType(typeof(bool), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 404)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<bool>> Tipo([FromRoute] Guid id, [FromRoute] EnumTipoCartao tipo)
-            => CustomResponse(await _cartaoService.MudarTiporAsync(id, tipo));
+        public async Task<ActionResult<bool>> Tipo([FromRoute] EnumTipoCartao tipo)
+        {
+            var idCartao = (await _cartaoService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault()?.Id;
+            if(!idCartao.HasValue)
+                return CustomResponse<bool>(false, 404, 404);
+            return CustomResponse(await _cartaoService.MudarTiporAsync(idCartao.Value, tipo));
+        }
     }
 }

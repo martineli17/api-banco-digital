@@ -14,6 +14,7 @@ namespace Dominio.Entidades
         public string Numero { get; private set; }
         public EnumTipoConta Tipo { get; set; }
         public decimal Saldo { get; set; }
+        public bool Ativo { get; set; }
         [JsonIgnore]
         public Cliente Cliente { get; set; }
         [JsonIgnore]

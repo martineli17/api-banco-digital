@@ -10,5 +10,6 @@ namespace Api.Core.DTO.OperacaoDTOs
     public class TransferenciaAddResponse : OperacaoBaseAdd
     {
         public Guid IdContaDestino { get; set; }
+        public Guid IdConta { get; set; }
     }
 }

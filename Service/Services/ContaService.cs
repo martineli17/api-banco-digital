@@ -2,12 +2,11 @@
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorio;
 using Dominio.Interfaces.Service;
-using Dominio.Validators.EntidadesValidator;
+using Dominio.Validators.MessagensValidator;
+using Dominio.ValuesType;
 using Service.Services.Bases;
 using Service.Services.ServicesBase;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Services
@@ -26,25 +25,33 @@ namespace Service.Services
             if (!await ValidarContaDuplicada(entidade))
                 return entidade;
             await base.AddAsync(entidade);
+            await base.CommitAsync();
             return entidade;
         }
 
-        public new async Task<Conta> UpdateAsync(Conta entidade)
+        public async Task<Conta> UpdateTipoAsync(Guid id, EnumTipoConta tipo)
         {
-            if (!await ValidarContaDuplicada(entidade, true))
-                return entidade;
-            await base.UpdateAsync(entidade);
+            var entidade = await base.GetByIdAsync(id);
+            if (!base.ValidarEntidade(entidade))
+                return null;
+            entidade.Tipo = tipo;
+            await base.Repositorio.UpdatePropsAsync(entidade, nameof(Conta.Tipo));
+            await base.CommitAsync();
             return entidade;
         }
 
-        public new async Task<bool> RemoveAsync(Guid id)
+        public async Task<Conta> UpdateStatusAsync(Guid id, bool ativo)
         {
-            if (await base.ValidarExistenciaEntidadeAsync(x => x.Id == id))
-                return false;
-            await base.RemoveAsync(id);
-            return await base.CommitAsync();
+            var entidade = await base.GetByIdAsync(id);
+            if (!base.ValidarEntidade(entidade))
+                return null;
+            entidade.Ativo = ativo;
+            await base.Repositorio.UpdatePropsAsync(entidade, nameof(Conta.Ativo));
+            await base.CommitAsync();
+            return entidade;
         }
 
+        #region Métodos Privados
         private async Task<bool> ValidarContaDuplicada(Conta entidade, bool update = false)
         {
             if (entidade == null ||
@@ -56,5 +63,6 @@ namespace Service.Services
             }
             return true;
         }
+        #endregion
     }
 }

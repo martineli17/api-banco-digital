@@ -1,6 +1,8 @@
 ﻿using Api.Controllers.Base;
 using Api.Core.Configuracoes.Seguranca;
+using Api.Core.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +16,8 @@ namespace Api.Core.Configuracoes.IoC
         {
             services.AddScoped<BaseControllerInjector>();
             services.AddSingleton<TokenProviderService>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<UserService>();
             services.AddAuthentication
                (JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
