@@ -38,7 +38,7 @@ namespace Api.Controllers
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 404)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<Conta>> Get([FromRoute] Guid id)
+        public async Task<ActionResult<Conta>> GetByCliente()
         {
             var conta = (await _contaService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault();
             return CustomResponse(conta, 200, conta is null ? 404 : 400);
