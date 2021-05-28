@@ -5,6 +5,7 @@ using Api.Core.Services;
 using Crosscuting.Notificacao;
 using Dominio.Entidades;
 using Dominio.Interfaces.Service;
+using Dominio.ValuesType;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,15 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IQueryable<Conta>), 200)]
+        [ProducesResponseType(typeof(IQueryable<ContaGet>), 200)]
         [ProducesResponseType(typeof(IQueryable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<IQueryable<Conta>>> Get() => CustomResponse(await _contaService.GetAsync());
+        public async Task<ActionResult<IEnumerable<ContaGet>>> Get()
+        {
+            var contas = await _contaService.GetAsync(x => true, nameof(Conta.Cliente));
+            return CustomResponse(base.Injector.Mapper.Map<IEnumerable<ContaGet>>(contas));
+        }
+            
 
         [HttpGet("cliente")]
         [ProducesResponseType(typeof(Conta), 200)]
@@ -56,29 +62,29 @@ namespace Api.Controllers
             return CustomResponse(Injector.Mapper.Map<ContaAddResponse>(entidade));
         }
 
-        [HttpPut("tipo")]
+        [HttpPut("tipo/{tipo}")]
         [ProducesResponseType(typeof(ContaUpdateResponse), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<ContaUpdateResponse>> UpdateTipo([FromBody] ContaUpdateTipoRequest conta)
+        public async Task<ActionResult<ContaUpdateResponse>> UpdateTipo([FromRoute] EnumTipoConta tipo)
         {
             var idConta = await GetIdConta();
             if(!idConta.HasValue)
                 return CustomResponse<ContaUpdateResponse>(null, 404, 404);
-            var entidade = await _contaService.UpdateTipoAsync(idConta.Value, conta.Tipo);
+            var entidade = await _contaService.UpdateTipoAsync(idConta.Value, tipo);
             return CustomResponse(Injector.Mapper.Map<ContaUpdateResponse>(entidade));
         }
 
-        [HttpPut("status")]
+        [HttpPut("status/{ativo}")]
         [ProducesResponseType(typeof(ContaUpdateResponse), 200)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<ContaUpdateResponse>> UpdateAtivo([FromBody] ContaUpdateAtivoRequest conta)
+        public async Task<ActionResult<ContaUpdateResponse>> UpdateAtivo([FromRoute] bool ativo)
         {
             var idConta = await GetIdConta();
             if (!idConta.HasValue)
                 return CustomResponse<ContaUpdateResponse>(null, 404, 404);
-            var entidade = await _contaService.UpdateStatusAsync(idConta.Value, conta.Ativo);
+            var entidade = await _contaService.UpdateStatusAsync(idConta.Value, ativo);
             return CustomResponse(Injector.Mapper.Map<ContaUpdateResponse>(entidade));
         }
 

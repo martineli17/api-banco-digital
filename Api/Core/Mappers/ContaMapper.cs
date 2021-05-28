@@ -1,10 +1,6 @@
 ﻿using Api.Core.DTO.ContaDTOs;
 using AutoMapper;
 using Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Core.Mappers
 {
@@ -15,7 +11,8 @@ namespace Api.Core.Mappers
             CreateMap<ContaAddRequest, Conta>();
             CreateMap<Conta, ContaAddResponse>();
             CreateMap<Conta, ContaUpdateResponse>();
-            CreateMap<ContaUpdateTipoRequest, Conta>();
+            CreateMap<Conta, ContaGet>()
+                .ForMember(dest => dest.NomeCliente, options => options.MapFrom(src => src.Cliente.Nome));
         }
     }
 }
