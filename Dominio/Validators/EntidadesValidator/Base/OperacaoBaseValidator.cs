@@ -11,6 +11,7 @@ namespace Dominio.Validators.EntidadesValidator.Base
             RuleFor(x => x.Movimentacao.Valor).GreaterThan(0).WithMessage(MensagemValidator.NaoMenorOuIgual("Valor"));
             RuleFor(x => x.Movimentacao.IdConta).NotEmpty().WithMessage(MensagemValidator.NaoNuloOuVazio("Conta"));
             RuleFor(x => x.Movimentacao.Conta).NotNull().WithMessage("Conta não existente.");
+            RuleFor(x => x.Movimentacao.Conta.Ativo).Must(value => value).WithMessage("Operação inválida. Conta está desativada no momento.");
         }
     }
 }
