@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Api.Controllers.Base
 {
-    //[Authorize]
+    [Authorize]
     [EnableQuery()]
     [ApiController]
     [Consumes("application/json")]
