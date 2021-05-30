@@ -36,8 +36,7 @@ namespace Api
             services.AddCors(options => options.AddPolicy("CorsOptions", x =>
                                                 x.AllowAnyHeader()
                                                 .AllowAnyMethod()
-                                                .AllowCredentials()
-                                                .WithOrigins("http://localhost:4200")));
+                                                .AllowAnyOrigin()));
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" }));
             services.AddIoCRepositorio();
             services.AddIoCService();

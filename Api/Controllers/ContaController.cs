@@ -47,7 +47,7 @@ namespace Api.Controllers
         public async Task<ActionResult<Conta>> GetByCliente()
         {
             var conta = (await _contaService.GetAsync(x => x.IdCliente == _userService.GetId())).FirstOrDefault();
-            return CustomResponse(conta, 200, conta is null ? 404 : 400);
+            return CustomResponse(conta, conta is null ? 404 : 200);
         }
 
         [HttpPost]

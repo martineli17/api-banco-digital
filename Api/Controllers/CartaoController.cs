@@ -45,7 +45,7 @@ namespace Api.Controllers
             if (!idCartao.HasValue)
                 return CustomResponse<Cartao>(null, 404, 404);
             var cartao = await _cartaoService.GetByIdAsync(idCartao.Value);
-            return CustomResponse(cartao, 200, cartao is null ? 404 : 400);
+            return CustomResponse(cartao, cartao is null ? 404 : 200);
         }
 
         [HttpPost]

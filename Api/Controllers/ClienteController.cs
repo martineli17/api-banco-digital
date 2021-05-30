@@ -4,6 +4,7 @@ using Api.Core.DTO.ClienteDTOs;
 using Crosscuting.Notificacao;
 using Dominio.Entidades;
 using Dominio.Interfaces.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Api.Controllers
             return CustomResponse(cliente, 200, cliente is null ? 404 : 400);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         [ProducesResponseType(typeof(ClienteAddResponse), 201)]
         [ProducesResponseType(typeof(IEnumerable<MensagemNotificacao>), 400)]
         [ProducesResponseType(500)]
